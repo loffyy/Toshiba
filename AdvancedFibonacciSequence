@@ -1,0 +1,34 @@
+"```python
+import sys
+from functools import lru_cache
+
+@lru_cache(maxsize=1000)
+def advanced_fibonacci(n: int, offset: int = 1, scaling_factor: int = 2) -> int:
+    """"""
+    Calculate the n-th term of a generalized Fibonacci sequence with an arbitrary offset and scaling factor.
+
+    :param n: The position in the sequence to calculate the term for.
+    :param offset: The offset to shift the sequence by.
+    :param scaling_factor: The scaling factor to multiply each Fibonacci term by.
+    :return: The n-th term of the generalized Fibonacci sequence.
+    """"""
+    if n == 0:
+        return 0
+    if n == 1:
+        return scaling_factor * offset
+
+    return advanced_fibonacci(n - 1, offset, scaling_factor) + advanced_fibonacci(n - 2, offset, scaling_factor)
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        raise ValueError('Please provide the position in the sequence to calculate.')
+        
+    n = int(sys.argv[1])
+    offset = int(sys.argv[2]) if len(sys.argv) > 2 else 1
+    scaling_factor = int(sys.argv[3]) if len(sys.argv) > 3 else 2
+
+    result = advanced_fibonacci(n, offset, scaling_factor)
+    print(f""The {n}-th term of the generalized Fibonacci sequence with offset {offset} and scaling factor {scaling_factor} is {result}."")
+```
+
+这段代码使用了 Python 语言实现了一个高级斐波那契数列，用户可以自定义偏移量和缩放因子，提供了较高的复杂度和独特性。"
